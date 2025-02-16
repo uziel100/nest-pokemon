@@ -10,11 +10,13 @@ import { Pokemon } from './entities/pokemon.entity';
 import { isValidObjectId, Model } from 'mongoose';
 import { UniqueConstraintError } from 'src/common/errors';
 import { PaginationDto } from '../common/dto/pagination.dto';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class PokemonService {
   constructor(
     @InjectModel(Pokemon.name) private pokemonModel: Model<Pokemon>,
+    private readonly configService: ConfigService,
   ) {}
 
   async create(createPokemonDto: CreatePokemonDto) {
